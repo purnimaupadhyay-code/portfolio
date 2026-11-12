@@ -6,10 +6,10 @@
   "goals": "I want to join a product team as a full stack developer and keep learning from experienced engineers.",
   "interests": ["Web development", "Open source", "Problem solving", "UI design"],
   "profileImage": "/myphoto.jpeg",
-  "email": "aarav@example.com",
+  "email": "upadhyaypurnima@gmail.com",
   "socials": {
-    "github": "https://github.com/",
-    "linkedin": "https://linkedin.com/"
+    "github": "https://github.com/purnimaupadhyay-code",
+    "linkedin": "www.linkedin.com/in/purnima-upadhyay-a09b083b6" 
   },
   "skills": [
     { "category": "Frontend", "items": ["HTML", "CSS", "JavaScript", "React.js"] },

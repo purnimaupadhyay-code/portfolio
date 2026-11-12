@@ -6,48 +6,46 @@ import Projects from "./components/Projects.jsx";
 import Education from "./components/Education.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
-// TEMPLATE: only the structure (empty tags + CSS classes).
-// TODO (class): fetch the data, then pass it to each component using props.
-function App(){
-let[data,setData]=useState(null);
-let[loading,setLoading]=useState(true);
-let[error,setErroe]=useState(false);
+function App() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-useEffect(()=>{
-  fetch('/portfolio.json')
-  .then((response)=>{
-    if(!response.ok){
-      throw new error("request failed");
-    }
-    return response.json();
-  })
-  .then((result)=>{
-    setData(result);
-    setLoading(false);
-  })
-  .catch(()=>{
-    setError(true);
-    setLoading(false);
-  })
-},[])
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}portfolio.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        setData(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
 
-  if (loading) return <p className="status">Loading Portfolio....</p>
-  if (error) return <p className="status">unable to load portfolio data</p>
+  if (loading) return <p>Loading Portfolio...</p>;
+  if (error) return <p>Unable to load portfolio data</p>;
+
   return (
     <>
       <Navbar name={data.name} />
       <main>
-        <Hero data= {data} />
-        <About data = {data} />
-        <Skills skills = {data.skills}/>
-        <Projects projects = {data.projects}/>
-        <Education education ={data.education} />
-     
-        <Contact email = {data.email} socials = {data.socials} />
+        <Hero data={data} />
+        <About data={data} />
+        <Skills skills={data.skills} />
+        <Projects projects={data.projects} />
+        <Education education={data.education} />
+        <Contact email={data.email} socials={data.socials} />
       </main>
-      <Footer name = {data.name} socials ={data.socials}/>
+      <Footer name={data.name} socials={data.socials} />
     </>
   );
 }
